@@ -24,10 +24,10 @@
   <arg name="sensing/visible_range" default="300.0" description="visible range when using dummy perception"/>
   <arg name="scenario_simulation" default="false" description="use scenario simulation"/>
   <!-- Tools -->
-  <!-- <arg name="rviz" default="true" description="launch rviz"/>
-  <arg name="rviz_config" default="$(find-pkg-share autoware_launch)/rviz/autoware.rviz" description="rviz config"/>
+  <arg name="rviz" default="true" description="launch rviz"/>
+  <arg name="rviz_config" default="$(find-pkg-share load_vehicle)/rviz/autoware.rviz" description="rviz config"/>
   <let name="rviz_respawn" value="false" if="$(var scenario_simulation)"/>
-  <let name="rviz_respawn" value="true" unless="$(var scenario_simulation)"/> -->
+  <let name="rviz_respawn" value="true" unless="$(var scenario_simulation)"/>
   <!-- Vcu emulation -->
   <arg name="vehicle_simulation" default="true" description="use vehicle simulation"/>
   
@@ -38,12 +38,19 @@
     <param name="data_path" value="$(var data_path)"/>
     <param name="planning_module_preset" value="$(var planning_module_preset)"/>
     <param name="lanelet2_map_file" value="$(var lanelet2_map_file)"/>
-    <!-- <param name="pointcloud_map_file" value="$(var pointcloud_map_file)"/>
+    <param name="pointcloud_map_file" value="$(var pointcloud_map_file)"/>
     <param name="launch_system_monitor" value="$(var launch_system_monitor)"/>
     <param name="launch_dummy_diag_publisher" value="$(var launch_dummy_diag_publisher)"/>
     <param name="initial_engage_state" value="$(var initial_engage_state)"/>
     <param name="perception/enable_detection_failure" value="$(var perception/enable_detection_failure)"/>
-    <param name="perception/enable_object_recognition" value="$(var perception/enable_object_recognition)"/> -->
+    <param name="perception/enable_object_recognition" value="$(var perception/enable_object_recognition)"/>
+    <param name="perception/use_base_link_z" value="$(var perception/use_base_link_z)"/>
+    <param name="sensing/visible_range" value="$(var sensing/visible_range)"/>
+    <param name="scenario_simulation" value="$(var scenario_simulation)"/>
+    <param name="rviz" value="$(var rviz)"/>
+    <param name="rviz_config" value="$(var rviz_config)"/>
+    <param name="rviz_respawn" value="$(var rviz_respawn)"/>
+    <param name="vehicle_simulation" value="$(var vehicle_simulation)"/>
   </node>
 
 </launch>

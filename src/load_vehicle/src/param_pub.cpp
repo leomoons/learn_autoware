@@ -25,14 +25,18 @@ class ParamPublisher : public rclcpp::Node
       this->declare_parameter("planning_module_preset", "default value");
       this->declare_parameter("lanelet2_map_file", "default value");
       this->declare_parameter("pointcloud_map_file", "default value");
-      this->declare_parameter("launch_system_monitor", "default value");
-      this->declare_parameter("launch_dummy_diag_publisher", "default value");
-      this->declare_parameter("initial_engage_state", "default value");
-      this->declare_parameter("perception/enable_detection_failure", "default value");
-      this->declare_parameter("perception/enable_object_recognition", "default value");
-      this->declare_parameter("perception/use_base_link_z", "default value");
-      this->declare_parameter("sensing/visible_range", "default value");
-      this->declare_parameter("scenario_simulation", "default value");
+      this->declare_parameter("launch_system_monitor", false);
+      this->declare_parameter("launch_dummy_diag_publisher", false);
+      this->declare_parameter("initial_engage_state", false);
+      this->declare_parameter("perception/enable_detection_failure", false);
+      this->declare_parameter("perception/enable_object_recognition", false);
+      this->declare_parameter("perception/use_base_link_z", false);
+      this->declare_parameter("sensing/visible_range", 300.0);
+      this->declare_parameter("scenario_simulation", false);
+      this->declare_parameter("rviz", false);
+      this->declare_parameter("rviz_config", "default_value");
+      this->declare_parameter("rviz_respawn", false);
+      this->declare_parameter("vehicle_simulation", false);
 
       auto mess = std_msgs::msg::String();
       mess.data = "all the arguments or parameters";
@@ -45,16 +49,81 @@ class ParamPublisher : public rclcpp::Node
   private:
     void timer_callback()
     {
-      std::string param_name, param_value;
+      std::string param_name, param_str;
+      bool param_bool;
+      double param_double;
 
       param_name = "map_path";
-      param_value = this->get_parameter(param_name).as_string();
-      RCLCPP_INFO(this->get_logger(), "%s: %s", param_name.c_str(), param_value.c_str());
+      param_str = this->get_parameter(param_name).as_string();
+      RCLCPP_INFO(this->get_logger(), "%s: %s", param_name.c_str(), param_str.c_str());
 
       param_name = "vehicle_model";
-      param_value = this->get_parameter(param_name).as_string();
-      RCLCPP_INFO(this->get_logger(), "%s: %s", param_name.c_str(), param_value.c_str());
+      param_str = this->get_parameter(param_name).as_string();
+      RCLCPP_INFO(this->get_logger(), "%s: %s", param_name.c_str(), param_str.c_str());
 
+      param_name = "sensor_model";
+      param_str = this->get_parameter(param_name).as_string();
+      RCLCPP_INFO(this->get_logger(), "%s: %s", param_name.c_str(), param_str.c_str());
+
+      param_name = "data_path";
+      param_str = this->get_parameter(param_name).as_string();
+      RCLCPP_INFO(this->get_logger(), "%s: %s", param_name.c_str(), param_str.c_str());
+
+      param_name = "planning_module_preset";
+      param_str = this->get_parameter(param_name).as_string();
+      RCLCPP_INFO(this->get_logger(), "%s: %s", param_name.c_str(), param_str.c_str());
+
+      param_name = "lanelet2_map_file";
+      param_str = this->get_parameter(param_name).as_string();
+      RCLCPP_INFO(this->get_logger(), "%s: %s", param_name.c_str(), param_str.c_str());
+
+      param_name = "pointcloud_map_file";
+      param_str = this->get_parameter(param_name).as_string();
+      RCLCPP_INFO(this->get_logger(), "%s: %s", param_name.c_str(), param_str.c_str());
+
+      param_name = "launch_system_monitor";
+      param_bool = this->get_parameter(param_name).as_bool();
+      RCLCPP_INFO(this->get_logger(), "%s: %d", param_name.c_str(), param_bool);
+
+      param_name = "launch_dummy_diag_publisher";
+      param_bool = this->get_parameter(param_name).as_bool();
+      RCLCPP_INFO(this->get_logger(), "%s: %d", param_name.c_str(), param_bool);
+
+      param_name = "initial_engage_state";
+      param_bool = this->get_parameter(param_name).as_bool();
+      RCLCPP_INFO(this->get_logger(), "%s: %d", param_name.c_str(), param_bool);
+
+      param_name = "perception/enable_detection_failure";
+      param_bool = this->get_parameter(param_name).as_bool();
+      RCLCPP_INFO(this->get_logger(), "%s: %d", param_name.c_str(), param_bool);
+
+      param_name = "perception/enable_object_recognition";
+      param_bool = this->get_parameter(param_name).as_bool();
+      RCLCPP_INFO(this->get_logger(), "%s: %d", param_name.c_str(), param_bool);
+
+      param_name = "perception/use_base_link_z";
+      param_bool = this->get_parameter(param_name).as_bool();
+      RCLCPP_INFO(this->get_logger(), "%s: %d", param_name.c_str(), param_bool);
+
+      param_name = "sensing/visible_range";
+      param_double = this->get_parameter(param_name).as_double();
+      RCLCPP_INFO(this->get_logger(), "%s: %f", param_name.c_str(), param_double);
+
+      param_name = "scenario_simulation";
+      param_bool = this->get_parameter(param_name).as_bool();
+      RCLCPP_INFO(this->get_logger(), "%s: %d", param_name.c_str(), param_bool);
+      
+      param_name = "rviz";
+      param_bool = this->get_parameter(param_name).as_bool();
+      RCLCPP_INFO(this->get_logger(), "%s: %d", param_name.c_str(), param_bool);
+
+      param_name = "rviz_config";
+      param_str = this->get_parameter(param_name).as_string();
+      RCLCPP_INFO(this->get_logger(), "%s: %s", param_name.c_str(), param_str.c_str());
+
+      param_name = "rviz_respawn";
+      param_bool = this->get_parameter(param_name).as_bool();
+      RCLCPP_INFO(this->get_logger(), "%s: %d", param_name.c_str(), param_bool);
 
       // auto message = std_msgs::msg::String();
       // message.data = "Hello, world! " + std::to_string(count_++);
